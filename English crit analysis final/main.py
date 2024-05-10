@@ -3,6 +3,7 @@ from pygame import mixer
 from map import MapF
 from car import car
 from Player import player
+import random
 
 mixer.init()
 pygame.init()
@@ -41,6 +42,10 @@ ticker = 0
 mapNum = 1
 
 Counter = 0
+
+Green = False
+Yellow = False
+Red = False
 
 def pls(counter):
     if mousePos[0] > 300 and mousePos[0] < 347 and mousePos[1] > 270 and mousePos[1] < 345 and mouseDown == True:
@@ -190,12 +195,27 @@ while 1: #GAME LOOP######################################################
     if ticket == True and p1.xpos > 662 and p1.xpos < 713 and p1.ypos < 122:
         mapNum = 3
     
+    if ticker % 40 == 0: #change this number to make him change direction less or more often
+            num = random.randrange(0, 3)
+            if num == 0:
+                Green = True
+            elif num == 1:
+                Yellow = True
+            elif num == 2:
+                Red = True
+
+    #if Green == True or Yellow == True:        
+        #if p1.ypos - 20 < 800 and p1.ypos + 50 > 760 or p1.ypos - 20 < 605 and p1.ypos + 50 > 554 or p1.ypos - 20 < 400 and p1.ypos + 50 > 370:
+            #print("hit")
+
+    #print(Green) 
+    #print(Yellow) 
+    #print(Red) 
     C.move()
-    
+    #C.collision(p1.xpos - 30, p1.ypos - 20)
     #print(p1.xpos, p1.ypos)
    
     #render section-----------------------------------------------------------
-
     if state == 1:
         screen.fill((100,100,230))# Clear the screen pink
 
@@ -217,8 +237,12 @@ while 1: #GAME LOOP######################################################
             draw_text("The Clock", text_font, (0,0,0), 445, 55)
             draw_text("Theater", text_font, (0,0,0), 455, 100)
 
+            #for i in range(1000, 200):
+            C.drawRR(screen)
+
             
-            C.draw(screen)
+            C.drawLB(screen)
+            C.drawRR2(screen)
 
             p1.draw(screen)
         

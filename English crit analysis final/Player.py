@@ -18,7 +18,7 @@ class player:
 
         #player variables
         self.xpos = 500
-        self.ypos = 800
+        self.ypos = 850
         self.vx = 0
         self.vy = 0
         self.frameWidth = 95
@@ -30,7 +30,8 @@ class player:
 
     def draw(self, screen):
         #pygame.draw.rect(screen, (255,0,255), (self.xpos, self.ypos, 30, 30))
-        screen.blit(Guy, (self.xpos-40, self.ypos -40), (self.frameWidth*self.frameNum, self.RowNum*self.frameHeight, self.frameWidth, self.frameHeight))
+        screen.blit(Guy, (self.xpos-30, self.ypos-20), (self.frameWidth*self.frameNum, self.RowNum*self.frameHeight, self.frameWidth, self.frameHeight))
+        #pygame.draw.rect(screen, (20, 20, 20), (self.xpos, self.ypos, 50, 50))
 
     def move(self, keys, map):
         #LEFT MOVEMENT
