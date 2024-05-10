@@ -11,9 +11,9 @@ Left_car = pygame.image.load('Left_Car.png')
 
 class car:
     def __init__(self):
-        self.xpos = -200000
+        self.xpos = -100000
         self.ypos = 750
-        self.xpos2 = 1000
+        self.xpos2 = 0
         self.ypos2 = 550
         self.xpos3 = -20000
         self.ypos3 = 350

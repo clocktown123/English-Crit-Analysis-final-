@@ -27,6 +27,7 @@ class player:
         self.frameNum = 1
         self.ticker = 0
         self.direction = D
+        self.HP = 100
 
     def draw(self, screen):
         #pygame.draw.rect(screen, (255,0,255), (self.xpos, self.ypos, 30, 30))

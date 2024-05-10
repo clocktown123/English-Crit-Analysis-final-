@@ -98,12 +98,13 @@ map2 = [[2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,8,2,2,2,2],
 
 
 text_font = pygame.font.SysFont("Sans", 30, bold = True)
+text_font2 = pygame.font.SysFont("Sans", 24, bold = True)
 
 def draw_text(text, font, text_col, tx, ty):
     img = font.render(text, True, text_col)
     screen.blit(img, (tx, ty))
 
-while 1: #GAME LOOP######################################################
+while 1 and p1.HP > 0: #GAME LOOP######################################################
     clock.tick(60) # fps
     ticker+=1
     #C.xpos += .1
@@ -195,22 +196,23 @@ while 1: #GAME LOOP######################################################
     if ticket == True and p1.xpos > 662 and p1.xpos < 713 and p1.ypos < 122:
         mapNum = 3
     
-    if ticker % 40 == 0: #change this number to make him change direction less or more often
-            num = random.randrange(0, 3)
+    if ticker % 60 == 0: #change this number to make him change direction less or more often
+            num = random.randrange(0, 2)
             if num == 0:
                 Green = True
+                Red = False
             elif num == 1:
-                Yellow = True
-            elif num == 2:
                 Red = True
+                Green = False
+    if mapNum == 1:
+        if Green == True:        
+            if p1.ypos < 800 and p1.ypos + 50 > 760 or p1.ypos < 605 and p1.ypos + 50 > 554 or p1.ypos < 400 and p1.ypos + 50 > 370:
+                p1.HP -= 10
+                print(p1.HP)
 
-    #if Green == True or Yellow == True:        
-        #if p1.ypos - 20 < 800 and p1.ypos + 50 > 760 or p1.ypos - 20 < 605 and p1.ypos + 50 > 554 or p1.ypos - 20 < 400 and p1.ypos + 50 > 370:
-            #print("hit")
-
-    #print(Green) 
-    #print(Yellow) 
-    #print(Red) 
+    #print("green",Green) s
+    #print("yellow",Yellow) 
+    #print("red",Red) 
     C.move()
     #C.collision(p1.xpos - 30, p1.ypos - 20)
     #print(p1.xpos, p1.ypos)
@@ -238,13 +240,18 @@ while 1: #GAME LOOP######################################################
             draw_text("Theater", text_font, (0,0,0), 455, 100)
 
             #for i in range(1000, 200):
-            C.drawRR(screen)
 
-            
-            C.drawLB(screen)
-            C.drawRR2(screen)
+            if Red == False:
+                C.drawRR(screen)
+                C.drawLB(screen)
+                C.drawRR2(screen)
 
             p1.draw(screen)
+
+            if Green == True:
+                pygame.draw.circle(screen, (20, 200, 20), (100, 50), 50)
+            if Red == True:
+                pygame.draw.circle(screen, (255, 10, 10), (100, 50), 50)
         
         if mapNum == 2:
             MapF(screen, map2)
@@ -257,7 +264,7 @@ while 1: #GAME LOOP######################################################
             
             if Counter == 1:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
-                draw_text("Worker: Im guessing you're here for the fnaf movie?", text_font, (0,0,0), 200, 900)
+                draw_text("Worker: Im guessing you're here for the fnaf movie?", text_font, (0,0,0), 100, 900)
             if Counter == 2:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
                 draw_text("You: Yep, I've been waiting for lieteral YEARS.", text_font, (0,0,0), 200, 900)
@@ -266,7 +273,7 @@ while 1: #GAME LOOP######################################################
                 draw_text("Worker: *This is like the 100th guy today.*", text_font, (0,0,0), 200, 900)
             if Counter == 4:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
-                draw_text("Worker: *If I need to deal with anymore of these geeks ima lose it.*", text_font, (0,0,0), 100, 900)
+                draw_text("Worker: *If I need to deal with anymore of these geeks ima lose it.*", text_font2, (0,0,0), 100, 900)
             if Counter == 5:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
                 draw_text("Worker: Here's your ticket nerd.", text_font, (0,0,0), 300, 900)
@@ -285,7 +292,7 @@ while 1: #GAME LOOP######################################################
                 draw_text("Worker: Your movie is in the room behind you", text_font, (0,0,0), 200, 900)
             if Counter == 10:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
-                draw_text("Worker: You already got your ticket", text_font, (0,0,0), 200, 900)
+                draw_text("You: My friends are already in there, I need to hurry", text_font, (0,0,0), 100, 900)
             
 
     pygame.display.flip()#this actually puts the pixel on the screen
