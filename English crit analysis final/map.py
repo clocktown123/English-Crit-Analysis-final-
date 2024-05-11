@@ -8,6 +8,15 @@ door = pygame.image.load('glass_door.png')
 table = pygame.image.load('table.png')
 table2 = pygame.image.load('table_5.png')
 poster = pygame.image.load('fnaf_poster.png')
+spot = pygame.image.load('spot.png')
+spot2 = pygame.image.load('spot2.png')
+side = pygame.image.load('side_walk.png')
+parked1 = pygame.image.load('parked_car1.png')
+parked2 = pygame.image.load('parked_car2.png')
+parked3 = pygame.image.load('parked_car3.png')
+parked4 = pygame.image.load('parked_car4.png')
+parked5 = pygame.image.load('parked_car5.png')
+
 
 def MapF (screen, map):
     for i in range(20):
@@ -28,3 +37,19 @@ def MapF (screen, map):
                         screen.blit(table2, (j *50, i * 50), (0, 0, 50, 50))
                     if map[i][j] == 8:
                          screen.blit(poster, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 9:
+                         screen.blit(spot, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 10:
+                         screen.blit(spot2, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 11:
+                         screen.blit(side, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 12:
+                         screen.blit(parked1, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 13:
+                         screen.blit(parked2, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 14:
+                         screen.blit(parked3, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 15:
+                         screen.blit(parked4, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 16:
+                         screen.blit(parked5, (j*50, i*50), (0,0,50,50))
