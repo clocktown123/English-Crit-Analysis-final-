@@ -16,6 +16,7 @@ parked2 = pygame.image.load('parked_car2.png')
 parked3 = pygame.image.load('parked_car3.png')
 parked4 = pygame.image.load('parked_car4.png')
 parked5 = pygame.image.load('parked_car5.png')
+floor = pygame.image.load('Movie_Floor4.png')
 
 
 def MapF (screen, map):
@@ -53,3 +54,5 @@ def MapF (screen, map):
                          screen.blit(parked4, (j*50, i*50), (0,0,50,50))
                     if map[i][j] == 16:
                          screen.blit(parked5, (j*50, i*50), (0,0,50,50))
+                    if map[i][j] == 0:
+                         screen.blit(floor, (j*50, i*50), (0,0,50,50))

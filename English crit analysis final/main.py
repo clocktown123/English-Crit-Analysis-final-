@@ -25,6 +25,14 @@ keys = [False, False, False, False, False, False]
 worker = pygame.image.load('worker.png') #load your spritesheet
 worker.set_colorkey((255, 0, 255)) #this makes bright pink (255, 0, 255) transparent (sort of
 
+friends = pygame.image.load('friends.png') #load your spritesheet
+friends.set_colorkey((255, 0, 255)) #this makes bright pink (255, 0, 255) transparent (sort of
+
+
+# I did not create this popcorn image
+corn = pygame.image.load('popcornM.png') #load your spritesheet
+corn.set_colorkey((255, 0, 255)) #this makes bright pink (255, 0, 255) transparent (sort of
+
 #game state variable
 state = 1 #1 is menu, 2 is playing, 3 is credits
 button1 = False
@@ -117,8 +125,30 @@ map3 = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
        [11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11],
        [2,2,2,2,2,2,2,3,3,3,3,3,3,2,2,2,2,2,2,2]]
 
+map4 = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+       [11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,14,9,0,0,0,0,10,9,0,0,0,0,10,12,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,12,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,15,0,0,0,0,10,16,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,10,12,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,13,9,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,10,9,0,0,0],
+       [0,0,0,13,9,0,0,0,0,10,9,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,12,0,0,0,0,13,9,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,15,0,0,0,0,10,16,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,10,9,0,0,0],
+       [0,0,0,10,9,0,0,0,0,10,9,0,0,0,0,10,9,0,0,0],
+       [11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11],
+       [11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11],
+       [2,2,2,2,2,2,2,2,2,4,4,2,2,2,2,2,2,2,2,2]]
+
 text_font = pygame.font.SysFont("Sans", 30, bold = True)
 text_font2 = pygame.font.SysFont("Sans", 24, bold = True)
+text_font3 = pygame.font.SysFont("Sans", 22, bold = True)
 
 def draw_text(text, font, text_col, tx, ty):
     img = font.render(text, True, text_col)
@@ -178,8 +208,18 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
         #keeps track of mouse button
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouseDown = True
-            if mousePos[0] > 300 and mousePos[0] < 347 and mousePos[1] > 270 and mousePos[1] < 345 and mouseDown == True:
+
+            if mapNum == 2 and Counter <= 10:
+                if mousePos[0] > 300 and mousePos[0] < 347 and mousePos[1] > 270 and mousePos[1] < 345 and mouseDown == True:
+                    Counter += 1
+
+            if mapNum == 3 and Counter >= 11:
                 Counter += 1
+            
+            if mapNum == 4:
+                if mousePos[0] > 150 and mousePos[0] < 300 and mousePos[1] > 850 and mousePos[1] <950:
+                    Counter += 1
+
         if event.type == pygame.MOUSEBUTTONUP:
             mouseDown = False
         
@@ -196,8 +236,10 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
         p1.move(keys, map)
     elif mapNum == 2:
         p1.move(keys , map2)
-    elif mapNum == 3:
-        p1.move(keys , map3)
+    #elif mapNum == 3:
+        #p1.move(keys , map3)
+    elif mapNum == 4:
+        p1.move(keys , map4)
         
         
        
@@ -217,7 +259,7 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
     
     if ticket == True and p1.xpos > 662 and p1.xpos < 713 and p1.ypos < 122:
         mapNum = 3
-    
+
     if ticker % 60 == 0: #change this number to make him change direction less or more often
             num = random.randrange(0, 2)
             if num == 0:
@@ -229,7 +271,7 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
     if mapNum == 1:
         if Green == True:        
             if p1.ypos < 800 and p1.ypos + 50 > 760 or p1.ypos < 605 and p1.ypos + 50 > 554 or p1.ypos < 400 and p1.ypos + 50 > 370:
-                p1.HP -= 10
+                #p1.HP -= 10
                 print(p1.HP)
 
     #print("green",Green) s
@@ -238,6 +280,7 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
     C.move()
     #C.collision(p1.xpos - 30, p1.ypos - 20)
     #print(p1.xpos, p1.ypos)
+    print(mousePos[0], mousePos[1])
    
     #render section-----------------------------------------------------------
     if state == 1:
@@ -282,6 +325,8 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
             p1.draw(screen)
 
             screen.blit(worker, (300, 270, 200, 200))
+
+            #screen.blit(corn, (500, 500, 50, 100 ))
             
             if Counter == 1:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
@@ -315,14 +360,62 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
                 draw_text("You: My friends are already in there, I need to hurry", text_font, (0,0,0), 100, 900)
 
-
         if mapNum == 3:
-            MapF(screen, map3)
+            draw_text("You: that was a pretty good movie, I wonder what my friends think of it", text_font, (255,255,255), 100, 900)
+            #if mouseDown == True:
+                #Counter += 1
+            if Counter > 11:
+                mapNum = 4
 
-            
+            print(Counter)
+
+        if mapNum == 4:
+            MapF(screen, map4)
 
             p1.draw(screen)
-            
+
+            screen.blit(friends, (150, 850, 200, 200))
+
+            if Counter == 13:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("You: Yo what'd you guys think of the movie?", text_font, (0,0,0), 350, 875)
+            if Counter == 14:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("Jazai: That was a mid freaking movie for years of waiting.", text_font2, (0,0,0), 350, 875)
+            if Counter == 15:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("Youssef: For real.", text_font2, (0,0,0), 350, 875)
+            if Counter == 16:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("You: Whattt, that movie was good wdym?.", text_font2, (0,0,0), 350, 875)
+            if Counter == 17:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("Youssef: It wasnt bad but it was like a 7/10.", text_font2, (0,0,0), 350, 875)
+            if Counter == 18:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("You: I mean why do you say that?", text_font2, (0,0,0), 350, 875)
+            if Counter == 19:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("Youssef: The movie wasn't even gory and the plot made no sense.", text_font2, (0,0,0), 350, 875)
+            if Counter == 20:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("Jazai: Don't forget it didn't even follow the lore of the games.", text_font2, (0,0,0), 350, 875)
+            if Counter == 21:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("You: Well you guys gotta rember that there's gonna be 2 more movies,", text_font3, (0,0,0), 350, 875)
+            if Counter == 22:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("You: and there is gonna be a rated r version of the movie coming on DVD.", text_font3, (0,0,0), 350, 875)
+            if Counter == 23:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("Jazai: Yea, I guess you're right, but it was still kind of a let down.", text_font3, (0,0,0), 350, 875)
+            if Counter == 24:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("Youssef: At least it brought us together to hang out.", text_font2, (0,0,0), 350, 875)
+            if Counter == 25:
+                pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
+                draw_text("You & Jazai: Yea, thats true.", text_font, (0,0,0), 350, 875)
+
 
     pygame.display.flip()#this actually puts the pixel on the screen
 
