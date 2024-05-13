@@ -271,7 +271,7 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
     if mapNum == 1:
         if Green == True:        
             if p1.ypos < 800 and p1.ypos + 50 > 760 or p1.ypos < 605 and p1.ypos + 50 > 554 or p1.ypos < 400 and p1.ypos + 50 > 370:
-                #p1.HP -= 10
+                p1.HP -= 10
                 print(p1.HP)
 
     #print("green",Green) s
@@ -280,7 +280,7 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
     C.move()
     #C.collision(p1.xpos - 30, p1.ypos - 20)
     #print(p1.xpos, p1.ypos)
-    print(mousePos[0], mousePos[1])
+    #print(mousePos[0], mousePos[1])
    
     #render section-----------------------------------------------------------
     if state == 1:
