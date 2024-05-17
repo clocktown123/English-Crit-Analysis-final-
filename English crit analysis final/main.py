@@ -333,7 +333,7 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
                 draw_text("Worker: Im guessing you're here for the fnaf movie?", text_font, (0,0,0), 100, 900)
             if Counter == 2:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
-                draw_text("You: Yep, I've been waiting for lieteral YEARS.", text_font, (0,0,0), 200, 900)
+                draw_text("You: Yep, I've been waiting for literal YEARS.", text_font, (0,0,0), 200, 900)
             if Counter == 3:
                 pygame.draw.rect(screen, (255, 255, 255), (100, 900, 800, 50))
                 draw_text("Worker: *This is like the 100th guy today.*", text_font, (0,0,0), 200, 900)
@@ -415,6 +415,10 @@ while 1 and p1.HP > 0: #GAME LOOP###############################################
             if Counter == 25:
                 pygame.draw.rect(screen, (255, 255, 255), (350, 875, 650, 50))
                 draw_text("You & Jazai: Yea, thats true.", text_font, (0,0,0), 350, 875)
+            if Counter > 25:
+                pygame.draw.rect(screen, (255, 255, 255), (0, 0, 1000, 1000))
+                draw_text("CONGRATULATIONS", text_font, (0,0,0), 400, 475)
+                draw_text("you and your friends had a good time, even tho they didnt enjoy the movie that much", text_font2, (0,0,0), 125, 505)
 
 
     pygame.display.flip()#this actually puts the pixel on the screen
